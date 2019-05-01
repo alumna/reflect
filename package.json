@@ -1,0 +1,63 @@
+{
+	"name": "@alumna/reflect",
+	"version": "1.0.0",
+	"description": "Reflect the contents of one directory to another. At the speed of light.",
+	"main": "dist/reflect.cjs.js",
+	"module": "dist/reflect.es.js",
+	"scripts": {
+		"build": "rollup --config rollup/cjs.js && rollup --config rollup/es.js",
+		"compile": "node other/nexe/compile.js",
+		"prepare": "npm run build",
+		"test": "jest --coverage"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/alumna/reflect.git"
+	},
+	"keywords": [
+		"reflect",
+		"mirror",
+		"sync",
+		"syncing",
+		"rsync",
+		"rsyncwrapper",
+		"copy",
+		"copying",
+		"directory",
+		"folder",
+		"content",
+		"files"
+	],
+	"author": "Paulo Coghi",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/alumna/reflect/issues"
+	},
+	"homepage": "https://github.com/alumna/reflect",
+	"jest": {
+		"coverageDirectory": "./coverage/",
+		"collectCoverage": true,
+		"collectCoverageFrom": [
+			"**/src/**",
+			"!**/dist/**",
+			"!**/node_modules/**"
+		],
+		"verbose": true,
+		"testEnvironment": "node"
+	},
+	"babel": {
+		"env": {
+			"test": {
+				"plugins": [
+					"transform-es2015-modules-commonjs"
+				]
+			}
+		}
+	},
+	"devDependencies": {
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+		"jest": "^24.7.1",
+		"rollup": "^1.10.1",
+		"rollup-plugin-terser": "^4.0.4"
+	}
+}
