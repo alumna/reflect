@@ -2,6 +2,21 @@
 	<img src="https://github.com/alumna/reflect/raw/master/reflect.svg?sanitize=true" alt="reflect" width="480" height="270" />
 </div>
 
+<div align="center">
+	<a href="https://npmjs.org/package/@alumna/reflect">
+		<img src="https://badgen.now.sh/npm/v/@alumna/reflect" alt="version" />
+	</a>
+	<a href="https://travis-ci.org/alumna/reflect">
+		<img src="https://travis-ci.org/alumna/reflect.svg?branch=master" alt="travis" />
+	</a>
+	<a href="https://codecov.io/gh/alumna/reflect">
+		<img src="https://codecov.io/gh/alumna/reflect/branch/master/graph/badge.svg" />
+	</a>
+	<a href="https://npmjs.org/package/@alumna/reflect">
+		<img src="https://badgen.now.sh/npm/dm/@alumna/reflect" alt="downloads" />
+	</a>
+</div>
+
 <div align="center">Reflect the contents of one directory to another. At the speed of light. :high_brightness:</div>
 
 <br/>
