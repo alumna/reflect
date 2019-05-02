@@ -3,8 +3,17 @@
 </div>
 
 <div align="center">
+	<a href="https://npmjs.org/package/@alumna/reflect">
+		<img src="https://badgen.now.sh/npm/v/@alumna/reflect" alt="version" />
+	</a>
+	<a href="https://travis-ci.org/alumna/reflect">
+		<img src="https://travis-ci.org/alumna/reflect.svg?branch=master" alt="travis" />
+	</a>
 	<a href="https://codecov.io/gh/alumna/reflect">
 		<img src="https://codecov.io/gh/alumna/reflect/branch/master/graph/badge.svg" />
+	</a>
+	<a href="https://npmjs.org/package/@alumna/reflect">
+		<img src="https://badgen.now.sh/npm/dm/@alumna/reflect" alt="downloads" />
 	</a>
 </div>
 
