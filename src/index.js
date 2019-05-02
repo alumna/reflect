@@ -11,19 +11,16 @@ const utimes 	 = promisify( fs.utimes )
 
 class Reflect {
 
-	constructor ( recursive, remove, exclude ) {
+	constructor ( recursive, remove ) {
 
 		this.cache     = {}
 		this.exclude   = {}
 		this.recursive = recursive
 		this.delete    = remove
 
-		// Build the index with the paths on "exclude"
-		exclude.forEach( path => this.exclude[ path ] = true )
-
 	}
 
-	async start ( src, dest ) {
+	async start ( src, dest, exclude ) {
 
 		// src and dest must be informed
 		if ( !src || !dest ) return { res: false, err: "Parameters 'src' and 'dest' must be defined" };
@@ -38,6 +35,9 @@ class Reflect {
 		// Fix slashes, validate and prepare "src" and "dest"
 		if ( ! await this.prepare( src, 'src' ) || ! await this.prepare( dest, 'dest' )  )
 			return { res: false, err: "Parameters 'src' and 'dest' must be a directory" };
+
+		// Build the index with the paths on "exclude"
+		exclude.forEach( path => this.exclude[ src + '/' + path ] = true )
 
 		await this.walk( src, dest );
 
@@ -206,6 +206,6 @@ class Reflect {
 
 export default function ( { src, dest, recursive = true, delete: remove = true, exclude = [] } ) {
 
-	return ( new Reflect( recursive, remove, exclude ) ).start( src, dest )
+	return ( new Reflect( recursive, remove ) ).start( src, dest, exclude )
 
 };

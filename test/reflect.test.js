@@ -55,6 +55,9 @@ test('6. Directory "dest" is created automatically when it doesn\'t exists', asy
 
 	const params = { src: 'test/06/src', dest: 'test/06/dest' }
 
+	if ( fs.existsSync( params.dest + '/.gitkeep' ) )
+		await unlink( params.dest + '/.gitkeep' )
+
 	if ( fs.existsSync( params.dest ) )
 		await rmdir( params.dest )
 
@@ -64,6 +67,7 @@ test('6. Directory "dest" is created automatically when it doesn\'t exists', asy
 
 	expect( fs.existsSync( params.dest ) ).toBe( true )
 
+	await unlink( params.dest + '/.gitkeep' )
 	await rmdir( params.dest )
 
 	expect( fs.existsSync( params.dest ) ).toBe( false )
@@ -88,6 +92,9 @@ test('7. Reflect new file on src', async () => {
 	expect( fs.existsSync( params.dest + '/file' ) ).toBe( false )
 
 	expect( res ).toBe( 'Directory "' + params.src + '" reflected to "' + params.dest + '"' );
+
+	// You konw, we need .gitkeep
+	fs.closeSync( fs.openSync( params.dest + '/.gitkeep', 'w' ) );
 
 });
 
@@ -118,6 +125,9 @@ test('8. Recursive reflection', async () => {
 	expect( fs.existsSync( params.dest + '/subfolder' ) ).toBe( false )
 
 	expect( res ).toBe( 'Directory "' + params.src + '" reflected to "' + params.dest + '"' );
+
+	// You konw, we need .gitkeep
+	fs.closeSync( fs.openSync( params.dest + '/.gitkeep', 'w' ) );
 
 });
 
@@ -185,6 +195,9 @@ test('10. Do not reflect equal / previous reflected files', async () => {
 	expect( dest_stats ).toEqual( await stat( params.dest + '/file' ) )
 
 	await unlink( params.dest + '/file' )
+
+	// You konw, we need .gitkeep
+	fs.closeSync( fs.openSync( params.dest + '/.gitkeep', 'w' ) );
 
 });
 
@@ -259,7 +272,7 @@ test('13. Reflect apparently equal files: same name but different content', asyn
 
 test('14. Do not reflect files informed on "exclude"', async () => {
 
-	const params = { src: 'test/14/src', dest: 'test/14/dest', exclude: [ 'test/14/src/file', 'test/14/src/subdir' ] }
+	const params = { src: 'test/14/src', dest: 'test/14/dest', exclude: [ 'file', 'subdir' ] }
 
 	if ( fs.existsSync( params.dest + '/subdir/subfile' ) )
 		await unlink( params.dest + '/subdir/subfile' )
@@ -283,6 +296,9 @@ test('14. Do not reflect files informed on "exclude"', async () => {
 	expect( fs.existsSync( params.dest + '/file' ) ).toBe( false )
 	expect( fs.existsSync( params.dest + '/subdir' ) ).toBe( false )
 	expect( fs.existsSync( params.dest + '/subdir/subfile' ) ).toBe( false )
+
+	// You konw, we need .gitkeep
+	fs.closeSync( fs.openSync( params.dest + '/.gitkeep', 'w' ) );
 
 });
 
@@ -313,5 +329,8 @@ test('16. Do not reflect subdirectories when "recursive = false"', async () => {
 
 	expect( fs.existsSync( params.dest + '/subdir/subfile' ) ).toBe( false )
 	expect( fs.existsSync( params.dest + '/subdir' ) ).toBe( false )
+
+	// You konw, we need .gitkeep
+	fs.closeSync( fs.openSync( params.dest + '/.gitkeep', 'w' ) );
 
 });
