@@ -23,6 +23,7 @@
 
 ## Features
 
+* It **does not** depend on `rsync`
 * Asynchronous and lightning fast
 * Extremely lightweight with **no dependencies** – 2.2kB!
 * Fully supports Linux, Mac and Windows
