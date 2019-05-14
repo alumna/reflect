@@ -17,16 +17,16 @@
 	</a>
 </div>
 
-<div align="center">Reflect the contents of one directory to another. At the speed of light. :high_brightness:</div>
+<div align="center">Reflect the contents of one directory to another. At the speed of light. :zap:</div>
 
 <br/>
 
 ## Features
 
 * It **does not** depend on `rsync`
-* Asynchronous and lightning fast
+* Asynchronous and super fast with files' `stat` cache
 * Extremely lightweight with **no dependencies** – 2.2kB!
-* Fully supports Linux, Mac and Windows
+* Fully tested on Linux, Mac and Windows
 
 Additionally, this module is delivered as:
 
