@@ -6,6 +6,9 @@
 	<a href="https://npmjs.org/package/@alumna/reflect">
 		<img src="https://badgen.now.sh/npm/v/@alumna/reflect" alt="version" />
 	</a>
+	<a href="https://npmjs.org/package/@alumna/reflect">
+		<img src="https://badgen.net/bundlephobia/min/@alumna/reflect" alt="size" />
+	</a>
 	<a href="https://travis-ci.org/alumna/reflect">
 		<img src="https://travis-ci.org/alumna/reflect.svg?branch=master" alt="travis" />
 	</a>
