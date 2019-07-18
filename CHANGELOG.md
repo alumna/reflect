@@ -1,4 +1,8 @@
-# Alumna changelog
+# Reflect changelog
+
+## 1.0.2 - 2019-07-18
+
+* Update devDependencies, incuding security updates from `lodash`
 
 ## 1.0.1 - 2019-05-02
 

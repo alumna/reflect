@@ -1,6 +1,6 @@
 {
 	"name": "@alumna/reflect",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Reflect the contents of one directory to another. At the speed of light.",
 	"main": "dist/reflect.cjs.js",
 	"module": "dist/reflect.es.js",
@@ -56,8 +56,9 @@
 	},
 	"devDependencies": {
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-		"jest": "^24.7.1",
-		"rollup": "^1.10.1",
-		"rollup-plugin-terser": "^4.0.4"
+		"jest": "^24.8.0",
+		"lodash": "^4.17.14",
+		"rollup": "^1.17.0",
+		"rollup-plugin-terser": "^5.1.1"
 	}
 }
