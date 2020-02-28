@@ -56,9 +56,9 @@
 	},
 	"devDependencies": {
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-		"jest": "^24.8.0",
-		"lodash": "^4.17.14",
-		"rollup": "^1.17.0",
-		"rollup-plugin-terser": "^5.1.1"
+		"jest": "^25.1.0",
+		"lodash": "^4.17.15",
+		"rollup": "^1.32.0",
+		"rollup-plugin-terser": "^5.2.0"
 	}
 }
