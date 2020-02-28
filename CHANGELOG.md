@@ -1,5 +1,9 @@
 # Reflect changelog
 
+## 1.0.3 - 2020-02-28
+
+* Update devDependencies, incuding security updates
+
 ## 1.0.2 - 2019-07-18
 
 * Update devDependencies, incuding security updates from `lodash`
