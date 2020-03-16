@@ -1,5 +1,10 @@
 # Reflect changelog
 
+## 1.0.4 - 2020-03-16
+
+* Run Jest tests through npx, removing its devDependency
+* Update Rollup (on devDependencies)
+
 ## 1.0.3 - 2020-02-28
 
 * Update devDependencies, incuding security updates
