@@ -225,7 +225,7 @@ test('12. Reflect apparently equal files: same name and content, different modif
 	expect( fs.existsSync( params.src + '/file' ) ).toBe( false )
 	expect( fs.existsSync( params.dest + '/file' ) ).toBe( false )
 
-	// Create the files with the same content, but **in different times**
+	// Create files with same content, but **in different times**
 	await write( params.dest + '/file', 'content' )
 	await sleep( 1100 )
 	await write( params.src + '/file', 'content' )
@@ -255,13 +255,13 @@ test('13. Reflect apparently equal files: same name but different content', asyn
 	expect( fs.existsSync( params.src + '/file' ) ).toBe( false )
 	expect( fs.existsSync( params.dest + '/file' ) ).toBe( false )
 
-	// Create the files with the same content, but **in different times**
+	// Create files with same name, but different content
 	await write( params.dest + '/file', 'content' )
 	await write( params.src + '/file', 'different content' )
 
 	const { res, err } = await reflect( params )
 
-	expect( fs.readFile( params.src + '/file', { encoding: 'utf-8' } ) ).toBe( fs.readFile( params.dest + '/file', { encoding: 'utf-8' } ) )
+	expect( fs.readFileSync( params.src + '/file', { encoding: 'utf-8' } ) ).toBe( fs.readFileSync( params.dest + '/file', { encoding: 'utf-8' } ) )
 
 	await unlink( params.src + '/file' )
 	await unlink( params.dest + '/file' )
