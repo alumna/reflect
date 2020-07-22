@@ -7,6 +7,7 @@ export default {
 
 	output: {
 		file: 'dist/reflect.cjs.js',
+		exports: 'auto',
 		format: 'cjs'
 	},
 

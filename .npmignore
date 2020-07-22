@@ -1,5 +1,7 @@
 coverage/
-reflect.svg
 rollup/
 src/
 test/
+reflect.svg
+.travis.yml
+codecov.yml
