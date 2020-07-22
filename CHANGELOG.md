@@ -1,5 +1,10 @@
 # Reflect changelog
 
+## 1.0.5 - 2020-07-22
+
+* Run Jest tests using it as a devDependency again, after new issues
+* Updated devDependencies
+
 ## 1.0.4 - 2020-03-16
 
 * Run Jest tests through npx, removing its devDependency
