@@ -11,7 +11,7 @@ const utimes 	 = promisify( fs.utimes )
 
 class Reflect {
 
-	constructor ( recursive, remove, modified_within, only_newer ) {
+	constructor ( recursive, remove, modified_within, only_newer, file_clone ) {
 
 		this.cache     = {}
 		this.exclude   = {}
@@ -19,6 +19,7 @@ class Reflect {
 		this.delete    = remove
 		this.modified_within = modified_within !== null ? (Date.now() / 1000) - modified_within : false
 		this.only_newer = only_newer
+		this.file_clone = file_clone
 
 	}
 
@@ -127,7 +128,7 @@ class Reflect {
 		// Or, if file is different, overwrite it
 		if ( ! await this.read( dest ) || this.is_different( src, dest ) ) {
 
-			await copy( src, dest, fs.constants.COPYFILE_FICLONE );
+			await copy( src, dest, this.file_clone ? fs.constants.COPYFILE_FICLONE : undefined );
 			return utimes( dest, this.cache[ src ].atime, this.cache[ src ].mtime )
 
 		}
@@ -197,7 +198,7 @@ class Reflect {
 		if ( this.only_newer ) {
 			return src_mtime > dest_mtime
 		}
-		else if ( modified_within !== false ) {
+		else if ( this.modified_within !== false ) {
 			return src_mtime >= this.modified_within && src_mtime !== dest_mtime
 		}
 
@@ -214,8 +215,8 @@ class Reflect {
 
 }
 
-export default function ( { src, dest, recursive = true, delete: remove = true, exclude = [], modified_within = null, only_newer = false } ) {
+export default function ( { src, dest, recursive = true, delete: remove = true, exclude = [], modified_within = null, only_newer = false, file_clone = true } ) {
 
-	return ( new Reflect( recursive, remove, modified_within, only_newer ) ).start( src, dest, exclude )
+	return ( new Reflect( recursive, remove, modified_within, only_newer, file_clone ) ).start( src, dest, exclude )
 
 };
