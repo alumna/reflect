@@ -30,6 +30,7 @@
 * Asynchronous and super fast with files' `stat` cache
 * Extremely lightweight with **no dependencies** – 2.2kB!
 * Fully tested on Linux, Mac and Windows
+* Added copy-on-write support for file systems that support it (see [COPYFILE_FICLONE](https://nodejs.org/docs/latest-v17.x/api/fs.html#fscopyfilesrc-dest-mode-callback))
 
 Additionally, this module is delivered as:
 
@@ -52,20 +53,33 @@ import reflect from '@alumna/reflect';
 let { res, err } = await reflect({
 
 	src: 'src/',
-	
+
 	dest: 'dest/',
-	
+
 	// (OPTIONAL) Default to 'true'
 	recursive: true,
-	
+
 	// (OPTIONAL) Default to 'true'
 	// Delete in dest the non-existent files in src
 	delete: true,
-	
+
 	// (OPTIONAL)
 	// Array with files and folders not to reflect
-	exclude: [ "skip-this-file.txt", "skip/this/directory" ]
-	
+	exclude: [ "skip-this-file.txt", "skip/this/directory" ],
+
+	// (OPTIONAL)
+	// Seconds of time to sync with (for example, 7200, only sync last 2 hours of changes)
+	modified_within: null,
+
+	// (OPTIONAL)
+	// Only sync files that are newer in the source (ie, destination files that have been updated won't be overwritten)
+	only_newer: false,
+
+	// (OPTIONAL)
+	// Disable COPYFILE_FICLONE if supported by file system, see more info:
+	// https://nodejs.org/docs/latest-v17.x/api/fs.html#fscopyfilesrc-dest-mode-callback
+	file_clone: true,
+
 });
 
 if ( err )
