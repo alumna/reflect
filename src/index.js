@@ -64,7 +64,7 @@ class Reflect {
 
 		}
 
-		// It's a file: problem. Return false. 
+		// It's a file: problem. Return false.
 		return false;
 
 	}
@@ -110,7 +110,7 @@ class Reflect {
 		// If it's a directory and "recursive = true", reflect it again!
 		// Also, with "is_dir", we already have cached the path stats. Performance!
 		if ( await this.is_dir( src ) ) {
-			
+
 			if ( !this.recursive ) return true;
 
 			// Prepare dest directory
@@ -125,7 +125,7 @@ class Reflect {
 		// Or, if file is different, overwrite it
 		if ( ! await this.read( dest ) || this.is_different( src, dest ) ) {
 
-			await copy( src, dest );
+			await copy( src, dest, fs.constants.COPYFILE_FICLONE );
 			return utimes( dest, this.cache[ src ].atime, this.cache[ src ].mtime )
 
 		}
@@ -163,7 +163,7 @@ class Reflect {
 
 		// Delete file
 		if ( ! await this.is_dir( path ) ) {
-			
+
 			// Update cache
 			this.cache[ path ] = false;
 
