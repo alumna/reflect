@@ -11,12 +11,14 @@ const utimes 	 = promisify( fs.utimes )
 
 class Reflect {
 
-	constructor ( recursive, remove ) {
+	constructor ( recursive, remove, modified_within, only_newer ) {
 
 		this.cache     = {}
 		this.exclude   = {}
 		this.recursive = recursive
 		this.delete    = remove
+		this.modified_within = modified_within !== null ? (Date.now() / 1000) - modified_within : false
+		this.only_newer = only_newer
 
 	}
 
@@ -189,9 +191,17 @@ class Reflect {
 	}
 
 	is_different ( src, dest ) {
+		const src_mtime = this.cache[ src ].mtime.getTime() / 1000
+		const dest_mtime = this.cache[ dest ].mtime.getTime() / 1000
 
-		return ( this.cache[ src ].size != this.cache[ dest ].size ) || ( this.cache[ src ].mtime.getTime() != this.cache[ dest ].mtime.getTime() )
+		if ( this.only_newer ) {
+			return src_mtime > dest_mtime
+		}
+		else if ( modified_within !== false ) {
+			return src_mtime >= this.modified_within && src_mtime !== dest_mtime
+		}
 
+		return ( this.cache[ src ].size != this.cache[ dest ].size ) || src_mtime !== dest_mtime
 	}
 
 	fix ( path ) {
@@ -204,8 +214,8 @@ class Reflect {
 
 }
 
-export default function ( { src, dest, recursive = true, delete: remove = true, exclude = [] } ) {
+export default function ( { src, dest, recursive = true, delete: remove = true, exclude = [], modified_within = null, only_newer = false } ) {
 
-	return ( new Reflect( recursive, remove ) ).start( src, dest, exclude )
+	return ( new Reflect( recursive, remove, modified_within, only_newer ) ).start( src, dest, exclude )
 
 };
