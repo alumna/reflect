@@ -11,12 +11,15 @@ const utimes 	 = promisify( fs.utimes )
 
 class Reflect {
 
-	constructor ( recursive, remove ) {
+	constructor ( recursive, remove, modified_within, only_newer, file_clone ) {
 
 		this.cache     = {}
 		this.exclude   = {}
 		this.recursive = recursive
 		this.delete    = remove
+		this.modified_within = modified_within !== null ? (Date.now() / 1000) - modified_within : false
+		this.only_newer = only_newer
+		this.file_clone = file_clone
 
 	}
 
@@ -64,7 +67,7 @@ class Reflect {
 
 		}
 
-		// It's a file: problem. Return false. 
+		// It's a file: problem. Return false.
 		return false;
 
 	}
@@ -110,7 +113,7 @@ class Reflect {
 		// If it's a directory and "recursive = true", reflect it again!
 		// Also, with "is_dir", we already have cached the path stats. Performance!
 		if ( await this.is_dir( src ) ) {
-			
+
 			if ( !this.recursive ) return true;
 
 			// Prepare dest directory
@@ -125,7 +128,7 @@ class Reflect {
 		// Or, if file is different, overwrite it
 		if ( ! await this.read( dest ) || this.is_different( src, dest ) ) {
 
-			await copy( src, dest );
+			await copy( src, dest, this.file_clone ? fs.constants.COPYFILE_FICLONE : undefined );
 			return utimes( dest, this.cache[ src ].atime, this.cache[ src ].mtime )
 
 		}
@@ -163,7 +166,7 @@ class Reflect {
 
 		// Delete file
 		if ( ! await this.is_dir( path ) ) {
-			
+
 			// Update cache
 			this.cache[ path ] = false;
 
@@ -189,9 +192,17 @@ class Reflect {
 	}
 
 	is_different ( src, dest ) {
+		const src_mtime = this.cache[ src ].mtime.getTime() / 1000
+		const dest_mtime = this.cache[ dest ].mtime.getTime() / 1000
 
-		return ( this.cache[ src ].size != this.cache[ dest ].size ) || ( this.cache[ src ].mtime.getTime() != this.cache[ dest ].mtime.getTime() )
+		if ( this.only_newer ) {
+			return src_mtime > dest_mtime
+		}
+		else if ( this.modified_within !== false ) {
+			return src_mtime >= this.modified_within && src_mtime !== dest_mtime
+		}
 
+		return ( this.cache[ src ].size != this.cache[ dest ].size ) || src_mtime !== dest_mtime
 	}
 
 	fix ( path ) {
@@ -204,8 +215,8 @@ class Reflect {
 
 }
 
-export default function ( { src, dest, recursive = true, delete: remove = true, exclude = [] } ) {
+export default function ( { src, dest, recursive = true, delete: remove = true, exclude = [], modified_within = null, only_newer = false, file_clone = true } ) {
 
-	return ( new Reflect( recursive, remove ) ).start( src, dest, exclude )
+	return ( new Reflect( recursive, remove, modified_within, only_newer, file_clone ) ).start( src, dest, exclude )
 
 };
