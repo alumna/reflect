@@ -1,5 +1,11 @@
 # Reflect changelog
 
+## 1.1.0 - 2023-12-08
+
+* Additional options: newer only, file clone, and recently modified sync - #24 by @onfire4g05
+* Updated development dependencies
+* Updated compatibility with newer NodeJS and Bun versions
+
 ## 1.0.5 - 2020-07-22
 
 * Run Jest tests using it as a devDependency again, after new issues

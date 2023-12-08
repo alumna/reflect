@@ -9,8 +9,8 @@
 	<a href="https://npmjs.org/package/@alumna/reflect">
 		<img src="https://badgen.net/bundlephobia/min/@alumna/reflect" alt="size" />
 	</a>
-	<a href="https://travis-ci.org/alumna/reflect">
-		<img src="https://travis-ci.org/alumna/reflect.svg?branch=master" alt="travis" />
+	<a href="https://npmjs.org/package/@alumna/reflect">
+		<img src="https://ci.appveyor.com/api/projects/status/github/alumna/reflect?branch=master&svg=true" alt="appveyor" />
 	</a>
 	<a href="https://codecov.io/gh/alumna/reflect">
 		<img src="https://codecov.io/gh/alumna/reflect/branch/master/graph/badge.svg" />
@@ -28,7 +28,7 @@
 
 * It **does not** depend on `rsync`
 * Asynchronous and super fast with files' `stat` cache
-* Extremely lightweight with **no dependencies** – 2.2kB!
+* Extremely lightweight with **no dependencies** – 2.3kB!
 * Fully tested on Linux, Mac and Windows
 * Added copy-on-write support for file systems that support it (see [COPYFILE_FICLONE](https://nodejs.org/docs/latest-v17.x/api/fs.html#fscopyfilesrc-dest-mode-callback))
 
