@@ -1,9 +1,12 @@
 {
 	"name": "@alumna/reflect",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Reflect the contents of one directory to another. At the speed of light.",
-	"main": "dist/reflect.cjs.js",
-	"module": "dist/reflect.es.js",
+	"exports": {
+		"import": "dist/reflect.es.js",
+		"require": "dist/reflect.cjs.js",
+		"default": "dist/reflect.es.js"
+	},
 	"type": "module",
 	"scripts": {
 		"build": "rollup --config rollup/cjs.js && rollup --config rollup/es.js",
