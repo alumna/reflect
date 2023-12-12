@@ -1,5 +1,9 @@
 # Reflect changelog
 
+## 1.1.1 - 2023-12-12
+
+* Fix a regression on v1.1.0 regarding the mix of ES Module and CommonJS. Thanks @adrian-branescu
+
 ## 1.1.0 - 2023-12-08
 
 * Additional options: newer only, file clone, and recently modified sync - #24 by @onfire4g05
