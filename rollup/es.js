@@ -6,7 +6,7 @@ export default {
 	external: [ 'fs', 'util' ],
 
 	output: {
-		file: 'dist/reflect.es.js',
+		file: 'dist/reflect.mjs',
 		format: 'esm'
 	},
 
