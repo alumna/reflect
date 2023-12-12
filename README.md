@@ -34,8 +34,8 @@
 
 Additionally, this module is delivered as:
 
-* **ES Module**: [`dist/reflect.es.js`](https://unpkg.com/@alumna/reflect/dist/reflect.mjs)
-* **CommonJS**: [`dist/reflect.cjs.js`](https://unpkg.com/@alumna/reflect/dist/reflect.cjs)
+* **ES Module**: [`dist/reflect.mjs`](https://unpkg.com/@alumna/reflect/dist/reflect.mjs)
+* **CommonJS**: [`dist/reflect.cjs`](https://unpkg.com/@alumna/reflect/dist/reflect.cjs)
 
 
 ## Install
