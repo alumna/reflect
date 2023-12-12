@@ -6,7 +6,7 @@ export default {
 	external: [ 'fs', 'util' ],
 
 	output: {
-		file: 'dist/reflect.cjs.js',
+		file: 'dist/reflect.cjs',
 		exports: 'auto',
 		format: 'cjs'
 	},
